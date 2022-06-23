@@ -1,0 +1,15 @@
+<a [routerLink]="recipe.key">
+    <div class="col">
+        <div class="card shadow-sm">
+            <img class="card-img-top" height="300px" [src]="recipe.value.imgUrl">
+            
+            <div class="card-body">
+                <p class="card-text text-center"> {{ recipe.value.name }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted"><i class="fa-solid fa-star" *ngFor="let _ of [].constructor(recipe.value.difficulty)"></i></small>
+                    <small class="text-muted">{{ recipe.value.duration }} mins</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>

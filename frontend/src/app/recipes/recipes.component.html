@@ -1,0 +1,14 @@
+<div class="h2">
+    <form>
+        <i class="fa-solid fa-filter" style="cursor: pointer" (click)="refresh()"></i>
+    </form>
+</div>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"> 
+       
+    <app-recipe-item
+        *ngFor="let recipe of recipes | keyvalue"
+        [recipe]="recipe"
+    >
+    </app-recipe-item>
+       
+</div>

@@ -1,0 +1,44 @@
+<main class="container col-5">
+  <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+    <h1 class="h3 mb-3 fw-normal">Logowanie</h1>
+
+    <div class="form-floating">
+      <input 
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Nazwa Użytkownika"
+        ngModel
+        required
+        minlength="4"
+        name="username"
+      >
+      <label for="floatingInput">Nazwa użytkownika</label>
+    </div>
+    <div class="form-floating mt-3">
+      <input
+        type="password"
+        class="form-control"
+        id="floatingPassword"
+        placeholder="Hasło"
+        ngModel
+        required
+        minlength="4"
+        name="password"
+      >
+      <label for="floatingPassword">Hasło</label>
+    </div>
+
+    <div class="alert alert-danger" style="margin-top:30px" role="alert" *ngIf="error">
+      Błędne dane logowania
+    </div>
+
+    <button
+      class="w-100 btn btn-lg btn-primary mt-3"
+      type="submit"
+      [disabled]="!authForm.valid"
+    >
+      Zaloguj
+    </button>
+  </form>
+</main>
