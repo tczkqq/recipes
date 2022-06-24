@@ -1,8 +1,9 @@
-const express = require('express');
-const session = require('express-session');
+//const express = require('express');
+import express from 'express';
+import session from 'express-session';
+import fs from 'fs';
+
 const app = express();
-const fs = require('fs');
-const cors = require('cors');
 
 const port = 3000;
 const secretKey = "TomaszJarnutowskiZ610"
@@ -46,7 +47,7 @@ app.post("/api/addRecipe", (req, res) => {
   const id = recipes['lastId'] += 1;
   recipes['recipes'][id] = req.body;
   recipes["lastId"] = id;
-  newData = JSON.stringify(recipes);
+  const newData = JSON.stringify(recipes);
   fs.writeFile(recipesDir, newData, err => {}); 
   return res.json({id: id});
 });
@@ -99,7 +100,7 @@ app.delete("/api/deleteRecipe/:id", (req, res) => {
     return res.sendStatus(404);  
   
   delete recipes['recipes'][req.params.id];
-  newData = JSON.stringify(recipes);
+  const newData = JSON.stringify(recipes);
   fs.writeFile(recipesDir, newData, err => {
   });
   return res.json(recipes);
@@ -128,7 +129,7 @@ app.post("/api/register", (req, res) => {
     "type": 2
   }
 
-  var newData = JSON.stringify(users);
+  const newData = JSON.stringify(users);
   fs.writeFile(usersDir, newData, err => {}); 
 
   req.session.loggedIn = true;
@@ -238,7 +239,7 @@ app.delete("/api/deleteComment/:id/:cid", (req, res) => {
 
   delete recipes['recipes'][req.params.id]['comments'][req.params.cid];
   recipes['recipes'][req.params.id]['comments'] = recipes['recipes'][req.params.id]['comments'].filter(function (e) {return e != null;});
-  newData = JSON.stringify(recipes);
+  const newData = JSON.stringify(recipes);
   fs.writeFile(recipesDir, newData, err => {
   });
   return res.json(recipes['recipes'][req.params.id]);
