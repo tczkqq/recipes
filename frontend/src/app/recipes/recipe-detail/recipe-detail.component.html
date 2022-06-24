@@ -1,14 +1,13 @@
 
-<div class="row">
-        
+<div class="row">     
     <div class="col-xl-6">
         <div class="d-flex justify-content-between align-items-center">
-            <small class="text-muted"><i class="fa-solid fa-kitchen-set"></i>{{ recipe.type }}</small>
+            <!-- <small class="text-muted"><i class="fa-solid fa-kitchen-set"></i>{{ recipe.type }}</small> -->
             <small class="text-muted">
                 <button 
                     class="btn btn-danger"
                     (click)="deleteRecipe()"
-                    *ngIf="user.type == 1"
+                    *ngIf="loggedIn && user.type == 1"
                 >
                     Usuń przepis
                 </button>
@@ -26,10 +25,7 @@
         <h3>Składniki</h3> 
         {{ recipe.ingredients }}
         <br><br>
-       
-        
-        
-        
+
     </div>
     <div class="col-xl-6">
         <img class="card-img-top" width="100%" [src]="recipe.imgUrl">
@@ -39,7 +35,7 @@
     <h2>Komentarze</h2>
         <div class="card" *ngFor="let comment of recipe.comments; let i = index">
             <div class="card-body">
-                <button (click)="delete(i)" class="btn btn-danger me-3" *ngIf="user.type == 1">X</button><b>{{ comment.author }}</b>: {{ comment.content }} 
+                <button (click)="delete(i)" class="btn btn-danger me-3" *ngIf="loggedIn && user.type == 1">X</button><b>{{ comment.author }}</b>: {{ comment.content }} 
             </div>
         </div>
     <form #commentForm="ngForm" (ngSubmit)="onSubmit(commentForm)" *ngIf="canComment && loggedIn">

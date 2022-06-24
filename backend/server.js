@@ -131,6 +131,10 @@ app.post("/api/register", (req, res) => {
   var newData = JSON.stringify(users);
   fs.writeFile(usersDir, newData, err => {}); 
 
+  req.session.loggedIn = true;
+  req.session.username = username; 
+  req.session.type = users[username]['type']; 
+
   return res.json( {
     "name": users[username]['name'],
     "type": users[username]['type'],
@@ -188,7 +192,7 @@ app.get("/api/getUsers", (req, res) => {
   let users = JSON.parse(rawdata);
   let output = [];
   for (let key in users) {
-    output.push({[key]: users[key]['name']});
+    output.push(users[key]['name']);
   }
   return res.json(output);
 });

@@ -41,7 +41,7 @@ export class RecipeAddComponent implements OnInit {
       description: new FormControl(recipeDescription, Validators.required),
       "type": new FormControl(recipeType, Validators.required),
       author: new FormControl(recipeAuthor),
-      duration: new FormControl(recipeDuration, [Validators.required, Validators.pattern(`^[1-9999]*$`)]),
+      duration: new FormControl(recipeDuration, [Validators.required, Validators.pattern(`^[1-9][0-9]?$|^100$`)]),
       difficulty: new FormControl(recipeDifficulty, [Validators.required, Validators.pattern(`^[1-5]*$`)]),
       comments: new FormControl(recipeComments),
       ingredients: new FormControl(recipeIngredients, Validators.required),

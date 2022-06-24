@@ -30,6 +30,7 @@ export class RecipeDetailComponent implements OnInit {
     })
     this.recipeService.getRecipe(this.id).subscribe(data => {
       this.recipe = data;
+      console.log(this.recipe)
       if (this.recipe.comments.length >= 5) {
         this.canComment =  false;
       }

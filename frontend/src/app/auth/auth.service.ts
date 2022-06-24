@@ -15,6 +15,10 @@ export class AuthService {
     private api: string = 'http://127.0.0.1:3000/api/'
 
     constructor(private http: HttpClient,private router: Router) {}
+
+    getUsers() {
+        return this.http.get<string[]>(this.api + 'getUsers');
+    }
     
     login(data) {
         this.http.post<User>(this.api + 'login', data, {withCredentials: true}).subscribe({

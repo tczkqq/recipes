@@ -1,6 +1,34 @@
-<div class="h2">
-    <form>
-        <i class="fa-solid fa-filter" style="cursor: pointer" (click)="refresh()"></i>
+<div class="mb-3">
+    <form class="row g-4 align-middle" #searchForm="ngForm" (ngSubmit)="onFilter(searchForm)"> 
+        <div class="col-auto">
+            <label for="difficulty">Trudność</label>
+            <select name="dif" id="dif" class="form-control" ngModel> 
+                <option value=""></option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <label for="only">Typ </label>
+            <select name="only" id="only" class="form-control" ngModel>
+                <option value=""></option>
+                <option value="Dania">Dania</option>
+                <option value="Ciasta">Ciasta</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <label for="author">Autor</label>
+            <select name="author" id="author" class="form-control" ngModel>
+                <option value=""></option>
+                <option [value]="u" *ngFor="let u of users">{{u}}</option>
+            </select>
+        </div>
+        <div class="col-auto h1">
+            <button type="submit" class="btn btn-primary">Filtruj</button>
+        </div>
     </form>
 </div>
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"> 

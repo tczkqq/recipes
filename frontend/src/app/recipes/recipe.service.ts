@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 
@@ -20,10 +20,23 @@ export class RecipeService {
 
     constructor(private http: HttpClient, private router: Router) {}
     
-    getRecipes() {
+    getRecipes(only?: string, author?: string, dif?: string) {
+        let params = new HttpParams()
+        if (only) {
+            params = params.set('only', only);
+        }
+        if (author) {
+            params = params.set('author', author);
+        }
+        console.log(dif)
+        if (dif) {
+            params = params.set('dif', dif);
+        }
+
         return this.http
             .get<Recipe[]>(
-                this.api + 'getRecipes'
+                this.api + 'getRecipes',
+                {params}
             ).pipe(tap(data => {
                 this.recipes = data;
             }))
